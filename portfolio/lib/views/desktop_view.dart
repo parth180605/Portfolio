@@ -6,6 +6,9 @@ import '../models/personal_info.dart';
 import '../widgets/plexus_background.dart';
 import '../widgets/project_card.dart';
 import '../widgets/filter_tab.dart';
+import 'profile_view.dart';
+
+enum ViewType { home, profile }
 
 class DesktopView extends StatefulWidget {
   const DesktopView({super.key});
@@ -16,6 +19,7 @@ class DesktopView extends StatefulWidget {
 
 class _DesktopViewState extends State<DesktopView> {
   String _selectedCategory = 'All';
+  ViewType _currentView = ViewType.home;
 
   List<Project> get _filteredProjects {
     if (_selectedCategory == 'All') {
@@ -83,10 +87,13 @@ class _DesktopViewState extends State<DesktopView> {
                 ),
               ),
               const Spacer(),
-              _navLink('Projects'),
-              _navLink('Experience'),
-              _navLink('About'),
-              _navLink('Blog'),
+              _navLink('Projects', isActive: _currentView == ViewType.home, onTap: () {
+                setState(() => _currentView = ViewType.home);
+              }),
+              _navLink('About', isActive: _currentView == ViewType.profile, onTap: () {
+                setState(() => _currentView = ViewType.profile);
+              }),
+              _navLink('Contact', onTap: _launchEmail),
               const SizedBox(width: 40),
               ElevatedButton(
                 onPressed: _launchEmail,
@@ -107,10 +114,13 @@ class _DesktopViewState extends State<DesktopView> {
                 ),
               ),
               const SizedBox(width: 16),
-              const CircleAvatar(
-                radius: 18,
-                backgroundColor: cardBg,
-                child: Icon(Icons.person, color: primaryCyan, size: 20),
+              GestureDetector(
+                onTap: () => setState(() => _currentView = ViewType.profile),
+                child: const CircleAvatar(
+                  radius: 18,
+                  backgroundColor: cardBg,
+                  child: Icon(Icons.person, color: primaryCyan, size: 20),
+                ),
               ),
             ],
           ),
@@ -119,7 +129,10 @@ class _DesktopViewState extends State<DesktopView> {
       body: Stack(
         children: [
           const AnimatedPlexusBackground(),
-          SingleChildScrollView(
+          if (_currentView == ViewType.profile)
+            const ProfileView()
+          else
+            SingleChildScrollView(
             child: Column(
               children: [
                 const SizedBox(height: 80),
@@ -725,15 +738,21 @@ class _DesktopViewState extends State<DesktopView> {
     );
   }
 
-  Widget _navLink(String label) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 20),
-      child: Text(
-        label,
-        style: const TextStyle(
-          color: Color(0xFF94A3B8),
-          fontSize: 14,
-          fontWeight: FontWeight.w500,
+  Widget _navLink(String label, {bool isActive = false, VoidCallback? onTap}) {
+    return MouseRegion(
+      cursor: SystemMouseCursors.click,
+      child: GestureDetector(
+        onTap: onTap,
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 20),
+          child: Text(
+            label,
+            style: TextStyle(
+              color: isActive ? AppColors.primaryCyan : const Color(0xFF94A3B8),
+              fontSize: 14,
+              fontWeight: isActive ? FontWeight.bold : FontWeight.w500,
+            ),
+          ),
         ),
       ),
     );

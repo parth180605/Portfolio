@@ -6,6 +6,7 @@ import '../models/personal_info.dart';
 import '../widgets/plexus_background.dart';
 import '../widgets/project_card.dart';
 import '../widgets/filter_tab.dart';
+import 'profile_view.dart';
 
 class MobileView extends StatefulWidget {
   const MobileView({super.key});
@@ -97,7 +98,9 @@ class _MobileViewState extends State<MobileView> {
                   child: SingleChildScrollView(
                     child: _selectedIndex == 0
                         ? _buildHomeSection()
-                        : _buildProjectsSection(),
+                        : _selectedIndex == 1
+                            ? _buildProjectsSection()
+                            : const ProfileView(),
                   ),
                 ),
               ],
@@ -118,8 +121,9 @@ class _MobileViewState extends State<MobileView> {
           children: [
             _buildBottomNav(Icons.home, 'Home', 0),
             _buildBottomNav(Icons.code, 'Projects', 1),
-            _buildBottomNav(Icons.description_outlined, 'Resume', 2),
-            _buildBottomNav(Icons.send_outlined, 'Contact', 3),
+            _buildBottomNav(Icons.person_outline, 'Profile', 2),
+            _buildBottomNav(Icons.description_outlined, 'Resume', 3),
+            _buildBottomNav(Icons.send_outlined, 'Contact', 4),
           ],
         ),
       ),
