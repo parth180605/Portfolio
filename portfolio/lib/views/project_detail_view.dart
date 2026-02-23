@@ -201,10 +201,13 @@ class ProjectDetailView extends StatelessWidget {
                                           ),
                                           decoration: BoxDecoration(
                                             color: const Color(0xFF162D31),
-                                            borderRadius:
-                                                BorderRadius.circular(8),
+                                            borderRadius: BorderRadius.circular(
+                                              8,
+                                            ),
                                             border: Border.all(
-                                              color: primaryCyan.withOpacity(0.1),
+                                              color: primaryCyan.withOpacity(
+                                                0.1,
+                                              ),
                                             ),
                                           ),
                                           child: Text(
@@ -246,8 +249,9 @@ class ProjectDetailView extends StatelessWidget {
                                           Container(
                                             padding: const EdgeInsets.all(8),
                                             decoration: BoxDecoration(
-                                              color:
-                                                  primaryCyan.withOpacity(0.1),
+                                              color: primaryCyan.withOpacity(
+                                                0.1,
+                                              ),
                                               borderRadius:
                                                   BorderRadius.circular(8),
                                             ),
@@ -275,10 +279,7 @@ class ProjectDetailView extends StatelessWidget {
                                         project.category,
                                       ),
                                       const SizedBox(height: 16),
-                                      _buildInfoRow(
-                                        'Status',
-                                        project.imageTag,
-                                      ),
+                                      _buildInfoRow('Status', project.imageTag),
                                       const SizedBox(height: 16),
                                       _buildInfoRow(
                                         'Platform',
@@ -313,8 +314,9 @@ class ProjectDetailView extends StatelessWidget {
                                           Container(
                                             padding: const EdgeInsets.all(8),
                                             decoration: BoxDecoration(
-                                              color:
-                                                  primaryCyan.withOpacity(0.1),
+                                              color: primaryCyan.withOpacity(
+                                                0.1,
+                                              ),
                                               borderRadius:
                                                   BorderRadius.circular(8),
                                             ),
@@ -350,15 +352,16 @@ class ProjectDetailView extends StatelessWidget {
                                                   Container(
                                                     margin:
                                                         const EdgeInsets.only(
-                                                      top: 4,
-                                                    ),
+                                                          top: 4,
+                                                        ),
                                                     width: 6,
                                                     height: 6,
                                                     decoration:
                                                         const BoxDecoration(
-                                                      color: primaryCyan,
-                                                      shape: BoxShape.circle,
-                                                    ),
+                                                          color: primaryCyan,
+                                                          shape:
+                                                              BoxShape.circle,
+                                                        ),
                                                   ),
                                                   const SizedBox(width: 12),
                                                   Expanded(
@@ -470,8 +473,9 @@ class ProjectDetailView extends StatelessWidget {
                                             vertical: 20,
                                           ),
                                           shape: RoundedRectangleBorder(
-                                            borderRadius:
-                                                BorderRadius.circular(12),
+                                            borderRadius: BorderRadius.circular(
+                                              12,
+                                            ),
                                           ),
                                         ),
                                         child: const Text(
@@ -495,8 +499,9 @@ class ProjectDetailView extends StatelessWidget {
                                           color: Colors.white.withOpacity(0.1),
                                         ),
                                         shape: RoundedRectangleBorder(
-                                          borderRadius:
-                                              BorderRadius.circular(12),
+                                          borderRadius: BorderRadius.circular(
+                                            12,
+                                          ),
                                         ),
                                       ),
                                       child: const Text(
